@@ -2,7 +2,7 @@
 Circular in app camera
 
 ### Screenshot
-<img src="https://github.com/sainivik/CircularTimerKotilin/blob/master/app/screenshots/circularview.gif.gif" width="300px" height="632px"/>
+<img src="https://github.com/sainivik/CircularCamera/blob/master/app/screenshots/camera.gif" width="300px" height="632px"/>
 
 #### Usage
 
