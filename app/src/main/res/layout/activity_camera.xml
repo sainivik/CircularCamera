@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:text="click photo" />
+        android:text="capture photo" />
 
     <SeekBar
         android:id="@+id/radiusSeekBar"
