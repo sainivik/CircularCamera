@@ -6,8 +6,8 @@
 
     <com.sainivik.circularcamera.widget.RoundTextureView
         android:id="@+id/texture_preview"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_250sdp"
         android:layout_gravity="center_horizontal" />
 
     <Button

@@ -59,7 +59,7 @@ class CameraActivity : AppCompatActivity(), OnGlobalLayoutListener, CameraListen
 
     private fun initView() {
         textureView = findViewById(R.id.texture_preview)
-        textureView!!.getViewTreeObserver().addOnGlobalLayoutListener(this)
+        textureView!!.viewTreeObserver.addOnGlobalLayoutListener(this)
     }
 
     fun initCamera() {
@@ -89,13 +89,6 @@ class CameraActivity : AppCompatActivity(), OnGlobalLayoutListener, CameraListen
 
     override fun onGlobalLayout() {
         textureView!!.viewTreeObserver.removeOnGlobalLayoutListener(this)
-        val layoutParams = textureView!!.layoutParams
-        val sideLength =
-            Math.min(textureView!!.width, textureView!!.height) * 3 / 4
-        layoutParams.width = sideLength
-        layoutParams.height = sideLength
-        textureView!!.layoutParams = layoutParams
-        textureView!!.turnRound()
         initCamera()
     }
 
@@ -181,10 +174,8 @@ class CameraActivity : AppCompatActivity(), OnGlobalLayoutListener, CameraListen
         progress: Int,
         fromUser: Boolean
     ) {
-        textureView!!.radius = progress * Math.min(
-            textureView!!.width,
-            textureView!!.height
-        ) / 2 / seekBar.max
+        textureView!!.radius =
+            progress * Math.min(textureView!!.width, textureView!!.height) / 2 / seekBar.max
         textureView!!.turnRound()
         roundBorderView!!.setRadius(
             progress * Math.min(
