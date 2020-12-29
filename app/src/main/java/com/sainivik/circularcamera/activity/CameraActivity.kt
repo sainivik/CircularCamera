@@ -5,13 +5,11 @@ import android.graphics.Bitmap
 import android.graphics.Point
 import android.hardware.Camera
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.view.WindowManager
 import android.widget.Button
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
@@ -92,6 +90,7 @@ class CameraActivity : AppCompatActivity(), OnGlobalLayoutListener, CameraListen
         initCamera()
     }
 
+
     override fun onPause() {
         if (cameraHelper != null) {
             cameraHelper!!.stop()
@@ -131,11 +130,11 @@ class CameraActivity : AppCompatActivity(), OnGlobalLayoutListener, CameraListen
                     }
                     textureView!!.layoutParams = layoutParams
                 }
-                roundBorderView = RoundBorderView(this@CameraActivity)
-                (textureView!!.parent as FrameLayout).addView(
-                    roundBorderView,
-                    textureView!!.layoutParams
-                )
+                //  roundBorderView = RoundBorderView(this@CameraActivity)
+                /* (textureView!!.parent as FrameLayout).addView(
+                     roundBorderView,
+                     textureView!!.layoutParams
+                 )*/
             }
         })
     }
@@ -165,6 +164,7 @@ class CameraActivity : AppCompatActivity(), OnGlobalLayoutListener, CameraListen
     override fun onDestroy() {
         if (cameraHelper != null) {
             cameraHelper!!.release()
+            cameraHelper == null
         }
         super.onDestroy()
     }
@@ -177,13 +177,13 @@ class CameraActivity : AppCompatActivity(), OnGlobalLayoutListener, CameraListen
         textureView!!.radius =
             progress * Math.min(textureView!!.width, textureView!!.height) / 2 / seekBar.max
         textureView!!.turnRound()
-        roundBorderView!!.setRadius(
-            progress * Math.min(
-                roundBorderView!!.width,
-                roundBorderView!!.height
-            ) / 2 / seekBar.max
-        )
-        roundBorderView!!.turnRound()
+        /* roundBorderView!!.setRadius(
+             progress * Math.min(
+                 roundBorderView!!.width,
+                 roundBorderView!!.height
+             ) / 2 / seekBar.max
+         )
+         roundBorderView!!.turnRound()*/
     }
 
     override fun onStartTrackingTouch(seekBar: SeekBar) {}
@@ -193,7 +193,8 @@ class CameraActivity : AppCompatActivity(), OnGlobalLayoutListener, CameraListen
     private fun capture(): Boolean {
         val bitmap: Bitmap = CameraHelper.preview!!.bitmap!!
         val file_path =
-            Environment.getExternalStorageDirectory().absolutePath +
+            // Environment.getExternalStorageDirectory().absolutePath +
+            getExternalFilesDir(null)!!.absolutePath +
                     "/WhideImages"
         val dir = File(file_path)
         if (!dir.exists()) dir.mkdirs()

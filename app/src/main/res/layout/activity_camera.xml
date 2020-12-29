@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical"
     android:orientation="vertical">
+
 
     <com.sainivik.circularcamera.widget.RoundTextureView
         android:id="@+id/texture_preview"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_250sdp"
         android:layout_gravity="center_horizontal" />
+
 
     <Button
         android:id="@+id/button"
